@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:HumaraGhar/API%20testing/Favorites/getFavoriteProperties/get_fav_handeler.dart';
 import 'package:HumaraGhar/API%20testing/Favorites/getFavoriteProperties/get_favorite_model.dart';
+import 'package:HumaraGhar/API%20testing/local%20db%20testing/user_service.dart';
 import 'package:HumaraGhar/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +17,7 @@ import 'package:HumaraGhar/view/main_screen/favorites_view/myFavoritesList.dart'
 import 'package:HumaraGhar/view/main_screen/projects_view/new_project_details.dart';
 import 'package:HumaraGhar/view/main_screen/projects_view/project_details.dart';
 import 'package:HumaraGhar/view/navbar/navbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FavoritesView extends StatefulWidget {
 
@@ -32,14 +34,20 @@ class FavoritesView extends StatefulWidget {
 
 class _FavoritesViewState extends State<FavoritesView> with TickerProviderStateMixin {
  
-
+ 
  late Future<List<GetFavoriteProperty>> _futureProperties;
 //  List favoriteList = [];
 
+  fetchUserId()async{
+    UserService userService = UserService();
+    UserModel? user =  await userService.getUserDataFromPrefs();
+    return user!.userID;
+  }
+
    @override
-  void initState() {
+   initState() {
     super.initState();
-    _futureProperties = fetchFavoriteProperties('2'); // Pass the user ID here
+    _futureProperties = fetchFavoriteProperties('5'); // Pass the user ID here
   }
 
   @override
@@ -106,12 +114,22 @@ class _FavoritesViewState extends State<FavoritesView> with TickerProviderStateM
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                
-                return ListTile(
-                  title: Text(snapshot.data![index]. propertyName),
-                  // subtitle: Text(snapshot.data![index].userName),
-                  subtitle: Text(snapshot.data![index].createdAt),
-                );
+                final favorite = snapshot.data![index];
+                return favoritesPageContainer(
+                        property: 'asd',
+                        width: width * .95,
+                        height: height * .2,
+                        projectTitle: favorite.propertyName,
+                        projectLocation : 'khi' ,
+                        projectDescription : 'daaaaa',
+                        projectPrice : '20000000',
+                        imageUrl:  'sadasdsa',
+                        ownerInfo:favorite.userName);
+                // ListTile(
+                //   title: Text(snapshot.data![index]. propertyName),
+                //   // subtitle: Text(snapshot.data![index].userName),
+                //   subtitle: Text(snapshot.data![index].createdAt),
+                // );
               },
             );
           }
@@ -163,24 +181,17 @@ onPop(){
 
 
                 // Favorites Page Container
-   favoritesPageContainer({width , height , color , projectTitle ,projectLocation , projectPrice , required List<String> imageUrl ,  ownerInfo , projectDescription}){
+  //  favoritesPageContainer({
+  //   width , height , color , projectTitle ,projectLocation , projectPrice , required List<String> imageUrl ,  ownerInfo , projectDescription}){
+   favoritesPageContainer({width , height , color , projectTitle ,projectLocation , projectPrice ,  imageUrl ,  ownerInfo , projectDescription ,required property}){
+  
    return  Padding(
      padding: EdgeInsets.symmetric(horizontal : width *.025 ,),
 
       // With objects
-
+    
       child: InkWell(
       onTap: (){
-        Get.to(ProjectDetailsWithObjects(
-            newProjectDetails: NewProjectDetails(
-              imageList: imageUrl, 
-              title: projectTitle, 
-              description: projectDescription , 
-              rentOrPrice: projectPrice, 
-              location: projectLocation, 
-              ownerContactInfo: ownerInfo) ,
-          
-          ));
       },
        child: Container(      
         width: width,
@@ -204,10 +215,11 @@ onPop(){
                     Container(height: height * .94 , width:  width * .3,
                     
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(imageUrl.first),
-                  fit: BoxFit.cover
-                  ),
+                  color: Color.fromARGB(255, 137, 125, 124),
+                  // image: DecorationImage(
+                  //   image: NetworkImage(imageUrl.first),
+                  // fit: BoxFit.cover
+                  // ),
                   borderRadius: BorderRadius.circular(12)
                 ),),
               SizedBox(width: 12,),

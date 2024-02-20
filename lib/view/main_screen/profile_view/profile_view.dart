@@ -1,3 +1,4 @@
+import 'package:HumaraGhar/API%20testing/local%20db%20testing/user_service.dart';
 import 'package:HumaraGhar/components/round_button.dart';
 import 'package:HumaraGhar/routes/routes_name.dart';
 import 'package:HumaraGhar/utils/Navigation_Drawer/navigation_drawer.dart';
@@ -202,7 +203,10 @@ class _ProfileViewState extends State<ProfileView> {
                           height: height * .08,
                           leadingIcon: Icon(Icons.logout , color: Colors.white,),
                           title: 'Sign Out',
-                          onTap: (){Get.toNamed(RouteName.loginScreen);}
+                          onTap: (){
+                              UserService().clearPrefs();
+                              onPop();
+                        Get.toNamed(RouteName.loginScreen);}
                         ),
                     ],
                   ),

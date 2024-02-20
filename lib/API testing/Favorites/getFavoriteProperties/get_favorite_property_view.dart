@@ -1,7 +1,6 @@
 
 import 'package:HumaraGhar/API%20testing/Favorites/getFavoriteProperties/get_fav_handeler.dart';
 import 'package:HumaraGhar/API%20testing/Favorites/getFavoriteProperties/get_favorite_model.dart';
-import 'package:HumaraGhar/view/test_screens/property_list.dart';
 import 'package:flutter/material.dart';
 
 class FavoritePropertiesPage extends StatefulWidget {

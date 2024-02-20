@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'package:HumaraGhar/API%20testing/local%20db%20testing/user_service.dart';
 import 'package:HumaraGhar/model/user_model.dart';
 import 'package:HumaraGhar/utils/app_colors.dart';
 import 'package:HumaraGhar/view/auth/login-view/login_view.dart';
@@ -8,6 +9,7 @@ import 'package:HumaraGhar/model/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' ;
 import 'package:http/http.dart' as http ;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService{
 
@@ -165,7 +167,7 @@ class AuthService{
       },
     );
 
-    UserModel user;
+    // UserModel user;
     if (response.statusCode == 200) {
       final dynamic jsonResponse = json.decode(response.body);
       if (jsonResponse is List) {
@@ -188,9 +190,18 @@ class AuthService{
   }
     void handleLoginResponse(LoginResponse loginResponse , BuildContext context) {
     if (loginResponse.status == 1) {
-      // Login successful, handle response data
-      // print(UserModel().userID);
-      UserModel user =  UserModel(userID: loginResponse.response['id'], userName: loginResponse.response['name'], email: loginResponse.response['email']);
+
+      UserModel user = UserModel(
+        userID: loginResponse.response['id'], 
+        userName: loginResponse.response['name'], 
+        email: loginResponse.response['id'],
+        isLogin: true, // Set isLogin to true upon successful login
+        );
+
+        UserService().storeUserDataInPrefs(user);
+
+          Get.offAll(() => NavigationPage());
+      
       print('Login Successful: ${loginResponse.message}');
       print('User ID: ${loginResponse.response['id']}');
       print('Name: ${loginResponse.response['name']}');

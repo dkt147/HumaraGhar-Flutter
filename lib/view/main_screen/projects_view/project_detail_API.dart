@@ -21,6 +21,7 @@ class ProjectDetails extends StatefulWidget {
 
 
 
+
   const ProjectDetails({
     super.key,  required this.property, 
   });
@@ -118,8 +119,16 @@ class _ProjectDetailsState extends State<ProjectDetails> {
                            Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('No of Bedrooms :' , style: TextStyle(color: Colors.white , fontWeight: FontWeight.w500 , fontSize: 18 ),),
-                             Text(widget.property.floorPlans[0].title , style: TextStyle(color: Colors.white , fontWeight: FontWeight.w500 , fontSize: 18 ),),
+                            Text('Property Type :' , style: TextStyle(color: Colors.white , fontWeight: FontWeight.w500 , fontSize: 18 ),),
+                             Text(widget.property.propertyTypes[0].name , style: TextStyle(color: Colors.white , fontWeight: FontWeight.w500 , fontSize: 18 ),),
+                          ],
+                        ),
+                        SizedBox(height: height * .01,),
+                           Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Property House Type :' , style: TextStyle(color: Colors.white , fontWeight: FontWeight.w500 , fontSize: 18 ),),
+                             Text(widget.property.propertyHouseTypes[0].name , style: TextStyle(color: Colors.white , fontWeight: FontWeight.w500 , fontSize: 18 ),),
                           ],
                         ),
                         SizedBox(height: height * .01,),

@@ -1,16 +1,9 @@
 
-import 'package:HumaraGhar/API%20testing/Favorites/getFavoriteProperties/get_favorite_property_view.dart';
-import 'package:HumaraGhar/API%20testing/Favorites/postFavoriteProperties/favorite_view.dart';
-import 'package:HumaraGhar/API%20testing/Properties/getProperties/fetchPropertyListView.dart';
+import 'package:HumaraGhar/API%20testing/local%20db%20testing/user_service.dart';
 import 'package:HumaraGhar/firebase_options.dart';
 import 'package:HumaraGhar/routes/app_routes.dart';
 import 'package:HumaraGhar/utils/app_colors.dart';
-import 'package:HumaraGhar/view/auth/login-view/login_view.dart';
-import 'package:HumaraGhar/view/navbar/navbar.dart';
 import 'package:HumaraGhar/view/splash-screen/splash_screen.dart';
-import 'package:HumaraGhar/API%20testing/property%20testing/ui.dart';
-import 'package:HumaraGhar/view/test_screens/property_list.dart';
-import 'package:HumaraGhar/view/test_screens/testScaffold.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -22,12 +15,9 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
-  
+    options: DefaultFirebaseOptions.currentPlatform,);
     // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
-
+  // Initialize UserService
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp , DeviceOrientation.portraitDown]).then((value) {
      
@@ -113,9 +103,6 @@ class MyApp extends StatelessWidget {
       // home: LoginScreenNew(),
       // home: SignupScreenTest(),
       // home: AdDescriptionContainer(),
-      
-      
-      
       getPages: AppRoutes.appRoutes(),
     );
   }
