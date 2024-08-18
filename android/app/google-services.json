@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "972626039457",
+    "project_id": "chatui-ebdbe",
+    "storage_bucket": "chatui-ebdbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972626039457:android:947ec5b51f4ff87df2d6e0",
+        "android_client_info": {
+          "package_name": "com.example.humaraghar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972626039457-lro34iqek1tvvf9a3sq5vdheior75ujt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvibKVUohKyZQXyW2Hx8Uhg57xjCK6IQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972626039457-lro34iqek1tvvf9a3sq5vdheior75ujt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
